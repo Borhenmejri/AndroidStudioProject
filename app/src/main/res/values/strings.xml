@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MyFinance Tracker</string>
+
+    <!-- Login screen -->
+    <string name="log_title">Welcome to MyFinance</string>
+    <string name="log_subtitle">Track your daily expenses easily</string>
+    <string name="log_username">Username</string>
+    <string name="log_password">Password</string>
+    <string name="log_connect">Sign in</string>
+    <string name="log_register_link">Create a new account</string>
+    <string name="log_forgot_password">Forgot password?</string>
+
+    <!-- Validation messages -->
+    <string name="log_err_required">This field is required</string>
+    <string name="log_err_credentials">Incorrect username or password</string>
+
+    <!-- Dashboard -->
+    <string name="dash_welcome">Welcome</string>
+    <string name="dash_add_expense">Add expense</string>
+    <string name="dash_history">Expense history</string>
+    <string name="dash_profile">Profile</string>
+    <string name="dash_logout">Logout</string>
+
+    <!-- Add expense -->
+    <string name="exp_title">Add a new expense</string>
+    <string name="exp_amount">Amount</string>
+    <string name="exp_category">Category</string>
+    <string name="exp_note">Note</string>
+    <string name="exp_save">Save expense</string>
+</resources>
