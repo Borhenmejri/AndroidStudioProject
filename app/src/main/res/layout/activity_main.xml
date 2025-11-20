@@ -6,192 +6,168 @@
     android:layout_height="match_parent"
     android:background="@drawable/mobile_pg">
 
-    <!-- Dark overlay over the city background -->
+    <!-- Dark overlay over the background image -->
     <View
         android:id="@+id/bgOverlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#66000000"
+        android:background="#55000000"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- ScrollView for small screens -->
-    <ScrollView
+    <!-- LOGIN CARD (only one card, centered) -->
+    <LinearLayout
+        android:id="@+id/loginCard"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:maxWidth="380dp"
+        android:orientation="vertical"
+        android:background="@drawable/login_card_bg"
+        android:padding="24dp"
+        android:elevation="12dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
+        <!-- Badge -->
+        <TextView
+            android:id="@+id/txtBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MYFINANCE"
+            android:textAllCaps="true"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/mf_primary"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_title"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/mf_primary_dark"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/txtSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_subtitle"
+            android:textSize="13sp"
+            android:textColor="@color/mf_input_text"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Username label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_username"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/mf_input_text"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Username input -->
+        <EditText
+            android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="24dp">
+            android:hint="@string/log_username"
+            android:background="@drawable/inputstyle"
+            android:padding="12dp"
+            android:textColor="@color/mf_primary_dark"
+            android:textColorHint="@color/mf_input_text"
+            android:layout_marginBottom="6dp"
+            android:inputType="textEmailAddress" />
 
-            <!-- LOGIN CARD -->
-            <LinearLayout
-                android:id="@+id/loginCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/login_card_bg"
-                android:orientation="vertical"
-                android:elevation="10dp"
-                android:layout_margin="8dp">
+        <!-- Username error -->
+        <TextView
+            android:id="@+id/txtUsernameError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_err_required"
+            android:textColor="@color/mf_error"
+            android:textSize="11sp"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
 
-                <!-- Badge -->
-                <TextView
-                    android:id="@+id/txtBadge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MYFINANCE"
-                    android:textAllCaps="true"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/mf_primary"
-                    android:background="@android:color/transparent"
-                    android:letterSpacing="0.08"
-                    android:layout_marginBottom="16dp" />
+        <!-- Password label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_password"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/mf_input_text"
+            android:layout_marginBottom="4dp" />
 
-                <!-- Title -->
-                <TextView
-                    android:id="@+id/txtTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_title"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/mf_primary_dark"
-                    android:layout_marginBottom="4dp"
-                    android:background="@android:color/transparent" />
+        <!-- Password input -->
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/log_password"
+            android:background="@drawable/inputstyle"
+            android:padding="12dp"
+            android:inputType="textPassword"
+            android:textColor="@color/mf_primary_dark"
+            android:textColorHint="@color/mf_input_text"
+            android:layout_marginBottom="6dp" />
 
-                <!-- Subtitle -->
-                <TextView
-                    android:id="@+id/txtSubtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_subtitle"
-                    android:textSize="13sp"
-                    android:textColor="@color/mf_input_text"
-                    android:layout_marginBottom="24dp"
-                    android:background="@android:color/transparent" />
+        <!-- Password error -->
+        <TextView
+            android:id="@+id/txtPasswordError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_err_required"
+            android:textColor="@color/mf_error"
+            android:textSize="11sp"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
 
-                <!-- Username label -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_username"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/mf_input_text"
-                    android:background="@android:color/transparent"
-                    android:layout_marginBottom="4dp" />
+        <!-- Forgot password -->
+        <TextView
+            android:id="@+id/txtForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_forgot_password"
+            android:textSize="12sp"
+            android:textColor="@color/mf_input_text"
+            android:layout_marginBottom="24dp" />
 
-                <!-- Username input -->
-                <EditText
-                    android:id="@+id/editTextUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/log_username"
-                    android:background="@drawable/inputstyle"
-                    android:padding="12dp"
-                    android:textColor="@color/mf_primary_dark"
-                    android:textColorHint="@color/mf_input_text"
-                    android:layout_marginBottom="4dp"
-                    android:inputType="textEmailAddress" />
+        <!-- Sign in button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_connect"
+            android:textColor="@color/mf_button_text"
+            android:textSize="16sp"
+            android:allCaps="false"
+            android:background="@drawable/btnstyle"
+            android:layout_marginBottom="16dp" />
 
-                <!-- Username error -->
-                <TextView
-                    android:id="@+id/txtUsernameError"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_err_required"
-                    android:textColor="@color/mf_error"
-                    android:textSize="11sp"
-                    android:background="@android:color/transparent"
-                    android:visibility="gone"
-                    android:layout_marginBottom="12dp" />
+        <!-- Create account link -->
+        <TextView
+            android:id="@+id/txtCreateAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_register_link"
+            android:textColor="@color/mf_primary_dark"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_gravity="center_horizontal" />
 
-                <!-- Password label -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_password"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/mf_input_text"
-                    android:background="@android:color/transparent"
-                    android:layout_marginBottom="4dp" />
-
-                <!-- Password input -->
-                <EditText
-                    android:id="@+id/editTextPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/log_password"
-                    android:background="@drawable/inputstyle"
-                    android:padding="12dp"
-                    android:inputType="textPassword"
-                    android:textColor="@color/mf_primary_dark"
-                    android:textColorHint="@color/mf_input_text"
-                    android:layout_marginBottom="4dp" />
-
-                <!-- Password error -->
-                <TextView
-                    android:id="@+id/txtPasswordError"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_err_required"
-                    android:textColor="@color/mf_error"
-                    android:textSize="11sp"
-                    android:background="@android:color/transparent"
-                    android:visibility="gone"
-                    android:layout_marginBottom="8dp" />
-
-                <!-- Forgot password -->
-                <TextView
-                    android:id="@+id/txtForgotPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_forgot_password"
-                    android:textSize="12sp"
-                    android:textColor="@color/mf_input_text"
-                    android:background="@android:color/transparent"
-                    android:layout_marginBottom="20dp" />
-
-                <!-- Sign in button -->
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnConnect"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_connect"
-                    android:textColor="@color/mf_button_text"
-                    android:textSize="15sp"
-                    android:allCaps="false"
-                    android:background="@drawable/btnstyle"
-                    android:layout_marginBottom="12dp" />
-
-                <!-- Create account link -->
-                <TextView
-                    android:id="@+id/txtCreateAccount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/log_register_link"
-                    android:textColor="@color/mf_primary_dark"
-                    android:textStyle="bold"
-                    android:textSize="13sp"
-                    android:background="@android:color/transparent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="mf_primary_dark">#102A43</color>      <!-- dark blue -->
-    <color name="mf_primary">#2CB1BC</color>           <!-- teal -->
-    <color name="mf_background">#F4F7FB</color>        <!-- light grey/blue -->
-    <color name="mf_error">#D64545</color>             <!-- error red -->
-    <color name="mf_input_border">#E0E6ED</color>      <!-- light border -->
-    <color name="mf_input_text">#627D98</color>        <!-- grey text -->
-    <color name="mf_button_text">#FFFFFF</color>       <!-- white -->
+
+    <!-- Brand Colors (matching blue-wave background) -->
+    <color name="mf_primary">#0CAFFF</color>
+    <color name="mf_primary_dark">#021435</color>
+
+    <!-- Text & Inputs -->
+    <color name="mf_input_text">#8DA0C4</color>
+    <color name="mf_input_border">#E1E7F5</color>
+    <color name="mf_error">#FF4B5C</color>
+
+    <!-- Buttons -->
+    <color name="mf_button_text">#FFFFFF</color>
 
 </resources>
