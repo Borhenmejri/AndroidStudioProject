@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyFinance Tracker</string>
+    <string name="log_title">Welcome to MyFinance</string>
+    <string name="log_subtitle">Track your daily expenses easily</string>
+    <string name="log_username">Username</string>
+    <string name="log_password">Password</string>
+    <string name="log_connect">Sign in</string>
+    <string name="log_register_link">Create a new account</string>
+    <string name="log_forgot_password">Forgot password?</string>
+    <string name="log_err_required">This field is required</string>
+    <string name="log_err_credentials">Incorrect username or password</string>
+    <string name="dash_welcome">Welcome</string>
+    <string name="dash_add_expense">Add expense</string>
+    <string name="dash_history">Expense history</string>
+    <string name="dash_profile">Profile</string>
 </resources>

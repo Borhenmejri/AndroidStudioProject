@@ -21,6 +21,10 @@
     <string name="dash_profile">Profile</string>
     <string name="dash_logout">Logout</string>
 
+    <!-- Missing dashboard strings (ADD THESE) -->
+    <string name="dash_hello">Welcome back</string>
+    <string name="dash_balance_label">Current balance</string>
+
     <!-- Add expense -->
     <string name="exp_title">Add a new expense</string>
     <string name="exp_amount">Amount</string>
