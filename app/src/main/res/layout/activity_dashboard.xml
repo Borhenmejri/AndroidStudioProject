@@ -105,7 +105,7 @@
             android:text="@string/dash_add_expense"
             android:textColor="@color/mf_button_text"
             android:textSize="15sp"
-            android:allCaps="false"
+            android:textAllCaps="false"
             android:background="@drawable/btnstyle"
             android:layout_marginBottom="12dp" />
 
@@ -117,7 +117,7 @@
             android:text="@string/dash_history"
             android:textColor="@color/mf_primary_dark"
             android:textSize="14sp"
-            android:allCaps="false"
+            android:textAllCaps="false"
             android:background="@drawable/secondary_btn"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="6dp"/>
@@ -129,7 +129,7 @@
             android:text="@string/dash_profile"
             android:textColor="@color/mf_primary_dark"
             android:textSize="14sp"
-            android:allCaps="false"
+            android:textAllCaps="false"
             android:background="@drawable/secondary_btn" />
     </LinearLayout>
 
