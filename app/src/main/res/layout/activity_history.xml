@@ -51,9 +51,9 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/mf_primary_dark"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="16dp" />
 
-                <!-- Empty state text -->
+                <!-- Empty state -->
                 <TextView
                     android:id="@+id/txtHistEmpty"
                     android:layout_width="wrap_content"
@@ -61,9 +61,9 @@
                     android:text="@string/hist_empty"
                     android:textColor="@color/mf_input_text"
                     android:textSize="14sp"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="16dp" />
 
-                <!-- Container where we will add rows from DB later -->
+                <!-- Container where we add rows dynamically -->
                 <LinearLayout
                     android:id="@+id/containerHistory"
                     android:layout_width="match_parent"

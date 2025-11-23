@@ -9,10 +9,14 @@ import android.widget.Toast;
 
 public class AddExpenseActivity extends AppCompatActivity {
 
+    private ExpenseDao expenseDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
+
+        expenseDao = new ExpenseDao(this);
 
         EditText edtAmount   = findViewById(R.id.editTextAmount);
         EditText edtCategory = findViewById(R.id.editTextCategory);
@@ -23,17 +27,20 @@ public class AddExpenseActivity extends AppCompatActivity {
         Button btnCancel = findViewById(R.id.btnCancelExpense);
 
         btnSave.setOnClickListener(v -> {
-            String amount   = edtAmount.getText().toString();
-            String category = edtCategory.getText().toString();
-            String date     = edtDate.getText().toString();
-            String note     = edtNote.getText().toString();
+            String amount   = edtAmount.getText().toString().trim();
+            String category = edtCategory.getText().toString().trim();
+            String date     = edtDate.getText().toString().trim();
+            String note     = edtNote.getText().toString().trim();
 
             if (amount.isEmpty() || category.isEmpty()) {
-                Toast.makeText(this, "Amount and category are required", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,
+                        "Amount and category are required",
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            ExpenseStorage.expenses.add(new Expense(amount, category, date, note));
+            Expense e = new Expense(amount, category, date, note);
+            expenseDao.insert(e);
 
             Toast.makeText(this, "Expense saved", Toast.LENGTH_SHORT).show();
             finish();

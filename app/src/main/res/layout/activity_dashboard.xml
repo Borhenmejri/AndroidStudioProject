@@ -120,7 +120,7 @@
             android:textAllCaps="false"
             android:background="@drawable/secondary_btn"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="6dp"/>
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/btnGoProfile"

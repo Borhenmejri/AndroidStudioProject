@@ -9,39 +9,46 @@ import android.widget.TextView;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    private ExpenseDao expenseDao;
+    private TextView txtBalanceValue;
+    // ... your other fields
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);   // ✅ must exist
+        setContentView(R.layout.activity_dashboard);
 
-        // Get views
-        TextView txtUser = findViewById(R.id.txtDashUsername);
-        Button btnAdd = findViewById(R.id.btnGoAddExpense);
+        expenseDao = new ExpenseDao(this);
+
+        txtBalanceValue = findViewById(R.id.txtBalanceValue);
+        TextView txtUser    = findViewById(R.id.txtDashUsername);
+        Button   btnAdd     = findViewById(R.id.btnGoAddExpense);
         TextView btnHistory = findViewById(R.id.btnGoHistory);
         TextView btnProfile = findViewById(R.id.btnGoProfile);
 
-
-        // Set username coming from MainActivity
         String username = getIntent().getStringExtra("username");
         if (username != null && !username.isEmpty()) {
             txtUser.setText(username);
         }
 
-        // Go to Add Expense
-        btnAdd.setOnClickListener(v -> {
-            Intent i = new Intent(DashboardActivity.this, AddExpenseActivity.class);
-            startActivity(i);
-        });
+        btnAdd.setOnClickListener(v ->
+                startActivity(new android.content.Intent(
+                        DashboardActivity.this, AddExpenseActivity.class))
+        );
 
-        // Go to History
-        btnHistory.setOnClickListener(v -> {
-            Intent i = new Intent(DashboardActivity.this, HistoryActivity.class);
-            startActivity(i);
-        });
+        btnHistory.setOnClickListener(v ->
+                startActivity(new android.content.Intent(
+                        DashboardActivity.this, HistoryActivity.class))
+        );
 
-        // Profile – you can fill this later
-        btnProfile.setOnClickListener(v -> {
-            // TODO: open ProfileActivity later
-        });
+        // Profile button as you already have (optional)
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        double total = expenseDao.getTotalAmount();
+        txtBalanceValue.setText("$" + String.format(java.util.Locale.US, "%.2f", total));
     }
 }
+
