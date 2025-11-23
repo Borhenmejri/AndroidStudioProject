@@ -3,8 +3,8 @@ package com.example.project2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DeleteExpenseActivity extends AppCompatActivity {
@@ -17,8 +17,8 @@ public class DeleteExpenseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delete_expense);
 
         TextView txtMessage = findViewById(R.id.txtDeleteMessage);
-        Button btnConfirm   = findViewById(R.id.btnConfirmDelete);
-        Button btnCancel    = findViewById(R.id.btnCancelDelete);
+        Button   btnConfirm = findViewById(R.id.btnConfirmDelete);
+        TextView btnCancel  = findViewById(R.id.btnCancelDelete);   // 👈 TextView, not Button
 
         expenseIndex = getIntent().getIntExtra("expense_index", -1);
         if (expenseIndex < 0 || expenseIndex >= ExpenseStorage.expenses.size()) {
@@ -36,7 +36,7 @@ public class DeleteExpenseActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(v -> {
             ExpenseStorage.expenses.remove(expenseIndex);
             Toast.makeText(this, "Expense deleted", Toast.LENGTH_SHORT).show();
-            finish(); // back to history
+            finish();
         });
 
         btnCancel.setOnClickListener(v -> finish());

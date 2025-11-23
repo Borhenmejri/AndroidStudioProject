@@ -11,24 +11,24 @@ import android.widget.Toast;
 public class EditExpenseActivity extends AppCompatActivity {
 
     private int expenseIndex;
-    private EditText edtAmount, edtCategory, edtDate, edtNote;
+    private EditText editTextAmount, editTextCategory, editTextDate, editTextNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_expense);
 
-        TextView title = findViewById(R.id.txtEditTitle);
-        title.setText("Edit Expense");
+        TextView txtTitle = findViewById(R.id.txtEditTitle);
+        txtTitle.setText("Edit Expense");
 
-        edtAmount   = findViewById(R.id.editTextAmount);
-        edtCategory = findViewById(R.id.editTextCategory);
-        edtDate     = findViewById(R.id.editTextDate);
-        edtNote     = findViewById(R.id.editTextNote);
-        Button btnSave   = findViewById(R.id.btnSaveExpense);
-        Button btnCancel = findViewById(R.id.btnCancelExpense);
+        editTextAmount   = findViewById(R.id.editTextAmount);
+        editTextCategory = findViewById(R.id.editTextCategory);
+        editTextDate     = findViewById(R.id.editTextDate);
+        editTextNote     = findViewById(R.id.editTextNote);
 
-        // Get which expense to edit
+        Button  btnSave   = findViewById(R.id.btnSaveExpense);
+        TextView btnCancel = findViewById(R.id.btnCancelExpense);   // 👈 TextView, not Button
+
         expenseIndex = getIntent().getIntExtra("expense_index", -1);
         if (expenseIndex < 0 || expenseIndex >= ExpenseStorage.expenses.size()) {
             Toast.makeText(this, "Expense not found", Toast.LENGTH_SHORT).show();
@@ -36,18 +36,17 @@ public class EditExpenseActivity extends AppCompatActivity {
             return;
         }
 
-        // Pre-fill fields
         Expense e = ExpenseStorage.expenses.get(expenseIndex);
-        edtAmount.setText(e.amount);
-        edtCategory.setText(e.category);
-        edtDate.setText(e.date);
-        edtNote.setText(e.note);
+        editTextAmount.setText(e.amount);
+        editTextCategory.setText(e.category);
+        editTextDate.setText(e.date);
+        editTextNote.setText(e.note);
 
         btnSave.setOnClickListener(v -> {
-            String amount   = edtAmount.getText().toString().trim();
-            String category = edtCategory.getText().toString().trim();
-            String date     = edtDate.getText().toString().trim();
-            String note     = edtNote.getText().toString().trim();
+            String amount   = editTextAmount.getText().toString().trim();
+            String category = editTextCategory.getText().toString().trim();
+            String date     = editTextDate.getText().toString().trim();
+            String note     = editTextNote.getText().toString().trim();
 
             if (amount.isEmpty() || category.isEmpty()) {
                 Toast.makeText(this,
@@ -60,7 +59,7 @@ public class EditExpenseActivity extends AppCompatActivity {
             ExpenseStorage.expenses.set(expenseIndex, updated);
 
             Toast.makeText(this, "Expense updated", Toast.LENGTH_SHORT).show();
-            finish(); // back to history
+            finish();
         });
 
         btnCancel.setOnClickListener(v -> finish());

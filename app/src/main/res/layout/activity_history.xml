@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/mobile_pg">
 
-    <!-- Dark overlay -->
     <View
         android:id="@+id/bgOverlay"
         android:layout_width="0dp"
@@ -18,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollHistory"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -54,7 +52,6 @@
                     android:textColor="@color/mf_primary_dark"
                     android:layout_marginBottom="16dp" />
 
-                <!-- Empty state -->
                 <TextView
                     android:id="@+id/txtHistEmpty"
                     android:layout_width="wrap_content"
@@ -64,14 +61,12 @@
                     android:textSize="14sp"
                     android:layout_marginBottom="16dp" />
 
-                <!-- Container where we add rows dynamically -->
                 <LinearLayout
                     android:id="@+id/containerHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
 
-                <!-- Divider -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -79,12 +74,12 @@
                     android:layout_marginBottom="16dp"
                     android:background="#E3E7F4" />
 
-                <!-- Visible buttons -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnUpdateSelected"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Update selected"
+                    android:text="UPDATE SELECTED"
+                    android:textAllCaps="true"
                     android:textColor="@color/mf_button_text"
                     android:background="@drawable/btnstyle"
                     android:padding="12dp"
@@ -94,13 +89,13 @@
                     android:id="@+id/btnDeleteSelected"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Delete selected"
+                    android:text="DELETE SELECTED"
+                    android:textAllCaps="true"
                     android:textColor="@color/mf_button_text"
                     android:background="@drawable/btnstyle"
                     android:padding="12dp" />
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

@@ -1,4 +1,3 @@
-// ExpenseStorage.java
 package com.example.project2;
 
 import java.util.ArrayList;

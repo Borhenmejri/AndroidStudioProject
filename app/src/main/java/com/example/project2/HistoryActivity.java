@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    private LinearLayout container;
-    private TextView txtEmpty;
+    private LinearLayout containerHistory;
+    private TextView txtHistEmpty;
     private Button btnUpdateSelected, btnDeleteSelected;
 
     // index of selected row; -1 = none
@@ -25,8 +25,8 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        container         = findViewById(R.id.containerHistory);
-        txtEmpty          = findViewById(R.id.txtHistEmpty);
+        containerHistory  = findViewById(R.id.containerHistory);
+        txtHistEmpty      = findViewById(R.id.txtHistEmpty);
         btnUpdateSelected = findViewById(R.id.btnUpdateSelected);
         btnDeleteSelected = findViewById(R.id.btnDeleteSelected);
 
@@ -36,7 +36,6 @@ public class HistoryActivity extends AppCompatActivity {
                 Toast.makeText(this, "Select an expense first", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             Intent i = new Intent(HistoryActivity.this, EditExpenseActivity.class);
             i.putExtra("expense_index", selectedIndex);
             startActivity(i);
@@ -48,7 +47,6 @@ public class HistoryActivity extends AppCompatActivity {
                 Toast.makeText(this, "Select an expense first", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             Intent i = new Intent(HistoryActivity.this, DeleteExpenseActivity.class);
             i.putExtra("expense_index", selectedIndex);
             startActivity(i);
@@ -58,15 +56,15 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        container.removeAllViews();
+        containerHistory.removeAllViews();
         selectedIndex = -1;
 
         if (ExpenseStorage.expenses.isEmpty()) {
-            txtEmpty.setVisibility(View.VISIBLE);
+            txtHistEmpty.setVisibility(View.VISIBLE);
             return;
         }
 
-        txtEmpty.setVisibility(View.GONE);
+        txtHistEmpty.setVisibility(View.GONE);
 
         for (int i = 0; i < ExpenseStorage.expenses.size(); i++) {
             Expense e = ExpenseStorage.expenses.get(i);
@@ -81,28 +79,26 @@ public class HistoryActivity extends AppCompatActivity {
             row.setTextSize(14f);
             row.setPadding(0, 12, 0, 12);
             row.setGravity(Gravity.START);
+            row.setBackgroundColor(0x00000000); // transparent
 
-            row.setBackgroundColor(0x00000000);
-
-            // When user taps a row → select it
             row.setOnClickListener(v -> {
                 selectedIndex = index;
                 highlightSelectedRow(index);
             });
 
-            container.addView(row);
+            containerHistory.addView(row);
         }
     }
 
-    // Highlight selected row in the list
+    // highlight selected row in blue
     private void highlightSelectedRow(int indexToHighlight) {
-        int childCount = container.getChildCount();
+        int childCount = containerHistory.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View child = container.getChildAt(i);
+            View child = containerHistory.getChildAt(i);
             if (i == indexToHighlight) {
                 child.setBackgroundColor(0x220066FF); // light blue
             } else {
-                child.setBackgroundColor(0x00000000);  // transparent
+                child.setBackgroundColor(0x00000000); // transparent
             }
         }
     }
