@@ -1,102 +1,115 @@
 package com.example.project2;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 public class HistoryActivity extends AppCompatActivity {
 
-    private ExpenseDao expenseDao;
     private LinearLayout container;
     private TextView txtEmpty;
+    private Button btnUpdateSelected, btnDeleteSelected;
+
+    // index of selected row; -1 = none
+    private int selectedIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        expenseDao = new ExpenseDao(this);
-        container  = findViewById(R.id.containerHistory);
-        txtEmpty   = findViewById(R.id.txtHistEmpty);
+        container         = findViewById(R.id.containerHistory);
+        txtEmpty          = findViewById(R.id.txtHistEmpty);
+        btnUpdateSelected = findViewById(R.id.btnUpdateSelected);
+        btnDeleteSelected = findViewById(R.id.btnDeleteSelected);
+
+        // UPDATE button -> EditExpenseActivity
+        btnUpdateSelected.setOnClickListener(v -> {
+            if (selectedIndex < 0 || selectedIndex >= ExpenseStorage.expenses.size()) {
+                Toast.makeText(this, "Select an expense first", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent i = new Intent(HistoryActivity.this, EditExpenseActivity.class);
+            i.putExtra("expense_index", selectedIndex);
+            startActivity(i);
+        });
+
+        // DELETE button -> DeleteExpenseActivity
+        btnDeleteSelected.setOnClickListener(v -> {
+            if (selectedIndex < 0 || selectedIndex >= ExpenseStorage.expenses.size()) {
+                Toast.makeText(this, "Select an expense first", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent i = new Intent(HistoryActivity.this, DeleteExpenseActivity.class);
+            i.putExtra("expense_index", selectedIndex);
+            startActivity(i);
+        });
 
         loadData();
     }
 
     private void loadData() {
         container.removeAllViews();
+        selectedIndex = -1;
 
-        List<Expense> expenses = expenseDao.getAll();
-
-        if (expenses.isEmpty()) {
+        if (ExpenseStorage.expenses.isEmpty()) {
             txtEmpty.setVisibility(View.VISIBLE);
             return;
         }
 
         txtEmpty.setVisibility(View.GONE);
 
-        for (Expense e : expenses) {
-            TextView row = new TextView(this);
+        for (int i = 0; i < ExpenseStorage.expenses.size(); i++) {
+            Expense e = ExpenseStorage.expenses.get(i);
+            final int index = i;
 
+            TextView row = new TextView(this);
             String line = "$" + e.amount + " • " + e.category;
             if (e.date != null && !e.date.isEmpty()) {
                 line += " • " + e.date;
             }
-
             row.setText(line);
             row.setTextSize(14f);
             row.setPadding(0, 12, 0, 12);
             row.setGravity(Gravity.START);
 
-            // 👉 Tap row: show Edit / Delete menu
+            row.setBackgroundColor(0x00000000);
+
+            // When user taps a row → select it
             row.setOnClickListener(v -> {
-                Intent i = new Intent(HistoryActivity.this, EditExpenseActivity.class);
-                i.putExtra("expense_id", e.id);
-                startActivity(i);
+                selectedIndex = index;
+                highlightSelectedRow(index);
             });
 
+            container.addView(row);
         }
     }
 
-    private void showOptionsDialog(Expense e) {
-        String[] options = {"Edit", "Delete", "Cancel"};
-
-        new AlertDialog.Builder(this)
-                .setTitle("Expense options")
-                .setItems(options, (dialog, which) -> {
-                    switch (which) {
-                        case 0: // Edit
-                            Intent i = new Intent(HistoryActivity.this, EditExpenseActivity.class);
-                            i.putExtra("expense_id", e.id);
-                            startActivity(i);
-                            break;
-
-                        case 1: // Delete
-                            expenseDao.delete(e.id);
-                            Toast.makeText(this, "Expense deleted", Toast.LENGTH_SHORT).show();
-                            loadData(); // refresh
-                            break;
-
-                        case 2: // Cancel
-                        default:
-                            dialog.dismiss();
-                            break;
-                    }
-                })
-                .show();
+    // Highlight selected row in the list
+    private void highlightSelectedRow(int indexToHighlight) {
+        int childCount = container.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = container.getChildAt(i);
+            if (i == indexToHighlight) {
+                child.setBackgroundColor(0x220066FF); // light blue
+            } else {
+                child.setBackgroundColor(0x00000000);  // transparent
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadData();   // refresh after editing
+        loadData(); // refresh after edit/delete
     }
 }

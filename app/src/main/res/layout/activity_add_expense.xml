@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,35 +12,35 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#55000088"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Scrollable card -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:orientation="vertical"
+            android:gravity="center"
             android:padding="24dp">
 
             <LinearLayout
                 android:id="@+id/addExpenseCard"
-                android:layout_width="554dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxWidth="420dp"
                 android:background="@drawable/login_card_bg"
                 android:elevation="12dp"
-                android:maxWidth="420dp"
                 android:orientation="vertical"
                 android:padding="24dp">
 
@@ -47,121 +48,121 @@
                     android:id="@+id/txtExpTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:text="@string/exp_title"
-                    android:textColor="@color/mf_primary_dark"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/mf_primary_dark"
+                    android:layout_marginBottom="20dp"/>
 
                 <!-- Amount -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:text="@string/exp_amount"
-                    android:textColor="@color/mf_input_text"
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/mf_input_text"
+                    android:layout_marginBottom="4dp"/>
 
                 <EditText
                     android:id="@+id/editTextAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/inputstyle"
                     android:hint="@string/exp_amount"
                     android:inputType="numberDecimal"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <!-- Category -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:text="@string/exp_category"
-                    android:textColor="@color/mf_input_text"
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/mf_input_text"
+                    android:layout_marginBottom="4dp"/>
 
                 <EditText
                     android:id="@+id/editTextCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/inputstyle"
                     android:hint="@string/exp_category"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <!-- Date -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:text="@string/exp_date"
-                    android:textColor="@color/mf_input_text"
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/mf_input_text"
+                    android:layout_marginBottom="4dp"/>
 
                 <EditText
                     android:id="@+id/editTextDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/inputstyle"
                     android:hint="2025-01-01"
                     android:inputType="date"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <!-- Note -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:text="@string/exp_note"
-                    android:textColor="@color/mf_input_text"
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/mf_input_text"
+                    android:layout_marginBottom="4dp"/>
 
                 <EditText
                     android:id="@+id/editTextNote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:minLines="2"
+                    android:maxLines="4"
                     android:background="@drawable/inputstyle"
                     android:hint="@string/exp_note"
-                    android:maxLines="4"
-                    android:minLines="2"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:layout_marginBottom="20dp"/>
 
                 <!-- Buttons row -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnSaveExpense"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/btnstyle"
                         android:text="@string/exp_save"
-                        android:textAllCaps="false"
                         android:textColor="@color/mf_button_text"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/btnstyle"
+                        android:layout_marginEnd="8dp"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnCancelExpense"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/secondary_btn"
                         android:text="@string/exp_cancel"
-                        android:textAllCaps="false"
                         android:textColor="@color/mf_primary_dark"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/secondary_btn"/>
                 </LinearLayout>
 
             </LinearLayout>

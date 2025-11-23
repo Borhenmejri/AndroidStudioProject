@@ -1,3 +1,4 @@
+// app/src/main/java/com/example/project2/AddExpenseActivity.java
 package com.example.project2;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +10,10 @@ import android.widget.Toast;
 
 public class AddExpenseActivity extends AppCompatActivity {
 
-    private ExpenseDao expenseDao;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
-
-        expenseDao = new ExpenseDao(this);
 
         EditText edtAmount   = findViewById(R.id.editTextAmount);
         EditText edtCategory = findViewById(R.id.editTextCategory);
@@ -40,7 +37,8 @@ public class AddExpenseActivity extends AppCompatActivity {
             }
 
             Expense e = new Expense(amount, category, date, note);
-            expenseDao.insert(e);
+            ExpenseStorage.expenses.add(e);
+            // 👈 store in memory
 
             Toast.makeText(this, "Expense saved", Toast.LENGTH_SHORT).show();
             finish();

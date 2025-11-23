@@ -18,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollHistory"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -69,6 +70,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E3E7F4" />
+
+                <!-- Visible buttons -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnUpdateSelected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Update selected"
+                    android:textColor="@color/mf_button_text"
+                    android:background="@drawable/btnstyle"
+                    android:padding="12dp"
+                    android:layout_marginBottom="12dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDeleteSelected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delete selected"
+                    android:textColor="@color/mf_button_text"
+                    android:background="@drawable/btnstyle"
+                    android:padding="12dp" />
 
             </LinearLayout>
 

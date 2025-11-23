@@ -10,8 +10,7 @@ import android.widget.Toast;
 
 public class EditExpenseActivity extends AppCompatActivity {
 
-    private ExpenseDao expenseDao;
-    private long expenseId;
+    private int expenseIndex;
     private EditText edtAmount, edtCategory, edtDate, edtNote;
 
     @Override
@@ -19,11 +18,8 @@ public class EditExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_expense);
 
-        // small label just to be sure screen is loaded
         TextView title = findViewById(R.id.txtEditTitle);
         title.setText("Edit Expense");
-
-        expenseDao = new ExpenseDao(this);
 
         edtAmount   = findViewById(R.id.editTextAmount);
         edtCategory = findViewById(R.id.editTextCategory);
@@ -32,29 +28,21 @@ public class EditExpenseActivity extends AppCompatActivity {
         Button btnSave   = findViewById(R.id.btnSaveExpense);
         Button btnCancel = findViewById(R.id.btnCancelExpense);
 
-        // 1) Get id from intent
-        expenseId = getIntent().getLongExtra("expense_id", -1);
-        if (expenseId == -1) {
-            Toast.makeText(this, "No expense id passed", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        // 2) Load from DB
-        Expense e = expenseDao.getById(expenseId);
-        if (e == null) {
+        // Get which expense to edit
+        expenseIndex = getIntent().getIntExtra("expense_index", -1);
+        if (expenseIndex < 0 || expenseIndex >= ExpenseStorage.expenses.size()) {
             Toast.makeText(this, "Expense not found", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
-        // 3) Fill fields
+        // Pre-fill fields
+        Expense e = ExpenseStorage.expenses.get(expenseIndex);
         edtAmount.setText(e.amount);
         edtCategory.setText(e.category);
         edtDate.setText(e.date);
         edtNote.setText(e.note);
 
-        // 4) Save changes
         btnSave.setOnClickListener(v -> {
             String amount   = edtAmount.getText().toString().trim();
             String category = edtCategory.getText().toString().trim();
@@ -68,11 +56,11 @@ public class EditExpenseActivity extends AppCompatActivity {
                 return;
             }
 
-            Expense updated = new Expense(expenseId, amount, category, date, note);
-            expenseDao.update(updated);
+            Expense updated = new Expense(amount, category, date, note);
+            ExpenseStorage.expenses.set(expenseIndex, updated);
 
             Toast.makeText(this, "Expense updated", Toast.LENGTH_SHORT).show();
-            finish();   // go back to history
+            finish(); // back to history
         });
 
         btnCancel.setOnClickListener(v -> finish());
